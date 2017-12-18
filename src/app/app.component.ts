@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
-import { formsModule } from '@angular/forms'
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  
-        username ='';
-        
-        isInputDisabled = true;
-        
-        checkValidate(){
-            this.isInputDisabled = (this.username=='') true : false;
-        }
-        
-        onSubmit(){
-            this.username = '';
-        }
+    
+    is_psw_show: boolean = false;
+    
+    logs: Array<number> = [];
+    
+    private createTimestamp(){
+        return Date.now() / 1000 | 0;
     }
-  
+    
+    toggleSecret(){
+        this.logs.push(this.createTimestamp());
+        this.is_psw_show = !this.is_psw_show;
+    }
 }
