@@ -1,36 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
+      <h3>Bind it!</h3>
       <ol>
-        <li>Add A button which says 'Display Details'</li>
-        <li>Add a paragraph with any content of your choice (e.g. 'Secret Password = tuna')</li>
-        <li>Toggle the displaying of that paragraph with the button created in the first step</li>
-        <li>Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</li>
-        <li>Starting at the 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass)</li>
+        <li>Create three new components: GameControl, Odd and Even</li>
+        <li>The GameControl Component should have buttons to start and stop the game</li>
+        <li>When starting the game, an event (holding a incrementing number) should get emitted each second (ref = setInterval())</li>
+        <li>The event should be listenable from outside the component</li>
+        <li>When stopping the game, no more events should get emitted (clearInterval(ref))</li>
+        <li>A new Odd component should get created for every odd number emitted, the same should happen for the Even Component (on even numbers)</li>
+        <li>Simply output Odd - NUMBER or Even - NUMBER in the two components</li>
+        <li>Style the element (e.g. paragraph) holding your output text differently in both components</li>
       </ol>
     </div>
   </div>
 </div>
-
-<table>
-    <tr>
-        <td>
-            <button style="display:inline"
-                class="btn btn-primary"
-                (click)="toggleSecret()"> 
-                Display Details
-            </button></td>
-        <td>
-            <p *ngIf="is_psw_show">Secret Password = tuna</p>
-        </td>
-    </tr>
-</table>
-<ul>    logging the timestamp:
-    <li *ngFor="let item of logs; let i = index" 
-        [ngStyle]="{backgroundColor: i>3? 'blue':'white'}"
-        [ngClass]="{'white-class': i>3}">
-        {{i+1}}: {{item}}
-        
-    </li>
-</ul>
- 
