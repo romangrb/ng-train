@@ -1,36 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <ol>
-        <li>Add A button which says 'Display Details'</li>
-        <li>Add a paragraph with any content of your choice (e.g. 'Secret Password = tuna')</li>
-        <li>Toggle the displaying of that paragraph with the button created in the first step</li>
-        <li>Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</li>
-        <li>Starting at the 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass)</li>
-      </ol>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
     </div>
   </div>
 </div>
-
-<table>
-    <tr>
-        <td>
-            <button style="display:inline"
-                class="btn btn-primary"
-                (click)="toggleSecret()"> 
-                Display Details
-            </button></td>
-        <td>
-            <p *ngIf="is_psw_show">Secret Password = tuna</p>
-        </td>
-    </tr>
-</table>
-<ul>    logging the timestamp:
-    <li *ngFor="let item of logs; let i = index" 
-        [ngStyle]="{backgroundColor: i>3? 'blue':'white'}"
-        [ngClass]="{'white-class': i>3}">
-        {{i+1}}: {{item}}
-        
-    </li>
-</ul>
- 
