@@ -1,28 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from './custom-validators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  projectForm: FormGroup;
-
-  ngOnInit() {
-    this.projectForm = new FormGroup({
-      'projectName': new FormControl(
-        null,
-        [Validators.required, CustomValidators.invalidProjectName],
-        CustomValidators.asyncInvalidProjectName
-      ),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'projectStatus': new FormControl('critical')
-    });
+export class AppComponent {
+  appStatus = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('stable');
+    }, 2000);
+  });
+  servers = [
+    {
+      instanceType: 'medium',
+      name: 'Production',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'large',
+      name: 'User Database',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Development Server',
+      status: 'offline',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    }
+  ];
+  filteredStatus = '';
+  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+    return {
+      'list-group-item-success': server.status === 'stable',
+      'list-group-item-warning': server.status === 'offline',
+      'list-group-item-danger': server.status === 'critical'
+    };
   }
-
-  onSaveProject() {
-    console.log(this.projectForm.value);
+  onAddServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'New Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    });
   }
 }
